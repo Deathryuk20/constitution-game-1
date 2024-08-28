@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-in-1 Constitution Card Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #34495e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+            position: fixed; /* Fixed position to stay at the top */
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .game-container {
+            max-width: 900px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin-top: 80px; /* Add margin to avoid overlap with the header */
+        }
+        .card {
+            background-color: #34495e;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            margin: 0 0 15px;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        .card p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .card button {
+            padding: 12px 24px;
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .card button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .card button:active {
+            transform: translateY(1px);
+        }
+        .game-choice button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 6px;
+            background-color: #2ecc71;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .game-choice button:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        .game-choice button:active {
+            transform: translateY(1px);
+        }
+        .game-choice button.selected {
+            background-color: #a2d5a1; /* Light and dull green */
+            color: #333;
+            transform: scale(1.05);
+        }
+        .game-choice h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Learning Made Fun</h1>
+</div>
+
+<div class="game-container">
+    <div id="game-choice" class="game-choice">
+        <h1>Select a Game</h1>
+        <button onclick="startGame('quiz')">Constitution Quiz</button>
+        <button onclick="startGame('flashcards')">Flashcards</button>
+        <button onclick="startGame('match')">Match the Pairs</button>
+        <button onclick="startGame('mcq')">MCQ</button>
+        <button onclick="startGame('truefalse')">True/False</button>
+    </div>
+
+    <div id="game-area" style="display: none;">
+        <div class="card" id="card">
+            <h2 id="question-title">Question</h2>
+            <p id="question">Sample Question Text</p>
+            <div id="options"></div>
+        </div>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+</div>
+
+<script>
+    let questions = [];
+    let currentQuestionIndex = 0;
+
+    const quizQuestions = [
+        {
+            title: "Quiz Question 1",
+            text: "Which part of the Constitution of India declares India as a sovereign, socialist, secular, and democratic republic?",
+            options: ["Preamble", "Fundamental Rights", "Directive Principles", "Amendments"],
+            correct: "Preamble"
+        },
+        {
+            title: "Quiz Question 2",
+            text: "Which Article of the Constitution deals with the Right to Equality?",
+            options: ["Article 14", "Article 15", "Article 16", "Article 17"],
+            correct: "Article 14"
+        },
+        {
+            title: "Quiz Question 3",
+            text: "Which Schedule of the Constitution contains provisions related to the administration of tribal areas?",
+            options: ["Fifth Schedule", "Sixth Schedule", "Seventh Schedule", "Eighth Schedule"],
+            correct: "Sixth Schedule"
+        },
+        {
+            title: "Quiz Question 4",
+            text: "The concept of Directive Principles of State Policy was borrowed from the Constitution of which country?",
+            options: ["USA", "Ireland", "UK", "Canada"],
+            correct: "Ireland"
+        },
+        {
+            title: "Quiz Question 5",
+            text: "Which amendment is known as the 'Mini-Constitution' of India?",
+            options: ["42nd Amendment", "44th Amendment", "52nd Amendment", "73rd Amendment"],
+            correct: "42nd Amendment"
+        },
+        // Add more quiz questions...
+    ];
+
+    const flashcards = [
+        {
+            title: "Flashcard 1",
+            text: "The Constitution of India was adopted on?",
+            options: ["26th January 1950"]
+        },
+        {
+            title: "Flashcard 2",
+            text: "The Preamble of the Constitution begins with the words 'We, the people of India.'",
+            options: ["True"]
+        },
+        {
+            title: "Flashcard 3",
+            text: "The Constitution of India consists of how many articles?",
+            options: ["395 articles (originally)"]
+        },
+        {
+            title: "Flashcard 4",
+            text: "The Right to Constitutional Remedies is provided under which Article?",
+            options: ["Article 32"]
+        },
+        {
+            title: "Flashcard 5",
+            text: "Which part of the Constitution deals with the Union and its territory?",
+            options: ["Part I"]
+        },
+        // Add more flashcards...
+    ];
+
+    const matchQuestions = [
+        {
+            title: "Match the Pairs 1",
+            text: "Match the following terms with their meanings:",
+            options: ["Preamble: Introduction", "Fundamental Rights: Basic Rights", "Directive Principles: Guidelines"]
+        },
+        {
+            title: "Match the Pairs 2",
+            text: "Match the following Articles with their corresponding Fundamental Rights:",
+            options: ["Article 14: Right to Equality", "Article 19: Right to Freedom", "Article 21: Right to Life"]
+        },
+        {
+            title: "Match the Pairs 3",
+            text: "Match the following Schedules with their subject matter:",
+            options: ["First Schedule: Union and State Territories", "Eighth Schedule: Languages", "Twelfth Schedule: Municipalities"]
+        },
+        {
+            title: "Match the Pairs 4",
+            text: "Match the following Amendments with their significance:",
+            options: ["42nd Amendment: Mini Constitution", "73rd Amendment: Panchayati Raj", "86th Amendment: Right to Education"]
+        },
+        {
+            title: "Match the Pairs 5",
+            text: "Match the following Parts with their content:",
+            options: ["Part III: Fundamental Rights", "Part IV: Directive Principles", "Part VI: States"]
+        },
+        // Add more match questions...
+    ];
+
+    const mcqQuestions = [
+        {
+            title: "MCQ 1",
+            text: "Which Article of the Constitution deals with the Right to Freedom of Religion?",
+            options: ["Article 25", "Article 26", "Article 27", "Article 28"],
+            correct: "Article 25"
+        },
+        {
+            title: "MCQ 2",
+            text: "Which Schedule of the Constitution deals with the distribution of powers between the Union and States?",
+            options: ["Sixth Schedule", "Seventh Schedule", "Eighth Schedule", "Ninth Schedule"],
+            correct: "Seventh Schedule"
+        },
+        {
+            title: "MCQ 3",
+            text: "Which part of the Constitution deals with the provisions for the Panchayats?",
+            options: ["Part IX", "Part X", "Part XI", "Part XII"],
+            correct: "Part IX"
+        },
+        {
+            title: "MCQ 4",
+            text: "Which Amendment Act of the Indian Constitution provides for the reservation of seats for Scheduled Castes and Scheduled Tribes in legislatures?",
+            options: ["101st Amendment", "102nd Amendment", "103rd Amendment", "104th Amendment"],
+            correct: "101st Amendment"
+        },
+        {
+            title: "MCQ 5",
+            text: "Which Article provides the power of judicial review to the Supreme Court?",
+            options: ["Article 32", "Article 136", "Article 226", "Article 142"],
+            correct: "Article 32"
+        },
+        // Add more MCQs...
+    ];
+
+    const trueFalseQuestions = [
+        {
+            title: "True/False 1",
+            text: "The Constitution of India is the longest written constitution in the world.",
+            options: ["True", "False"],
+            correct: "True"
+        },
+        {
+            title: "True/False 2",
+            text: "The Directive Principles of State Policy are enforceable by the courts.",
+            options: ["True", "False"],
+            correct: "False"
+        },
+        {
+            title: "True/False 3",
+            text: "The Indian Constitution was drafted by Dr. B.R. Ambedkar.",
+            options: ["True", "False"],
+            correct: "True"
+        },
+        {
+            title: "True/False 4",
+            text: "Fundamental Duties are part of the original Constitution.",
+            options: ["True", "False"],
+            correct: "False"
+        },
+        {
+            title: "True/False 5",
+            text: "The Indian Constitution originally contained 10 Schedules.",
+            options: ["True", "False"],
+            correct: "True"
+        },
+        // Add more true/false questions...
+    ];
+
+    function startGame(gameType) {
+        // Remove selected class from all buttons
+        document.querySelectorAll('.game-choice button').forEach(button => {
+            button.classList.remove('selected');
+        });
+
+        // Add selected class to the clicked button
+        event.target.classList.add('selected');
+
+        document.getElementById('game-choice').style.display = 'none';
+        document.getElementById('game-area').style.display = 'block';
+
+        switch (gameType) {
+            case 'quiz':
+                questions = quizQuestions;
+                break;
+            case 'flashcards':
+                questions = flashcards;
+                break;
+            case 'match':
+                questions = matchQuestions;
+                break;
+            case 'mcq':
+                questions = mcqQuestions;
+                break;
+            case 'truefalse':
+                questions = trueFalseQuestions;
+                break;
+        }
+
+        currentQuestionIndex = 0;
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const questionTitle = document.getElementById('question-title');
+        const questionText = document.getElementById('question');
+        const optionsContainer = document.getElementById('options');
+        
+        questionTitle.innerText = questions[currentQuestionIndex].title;
+        questionText.innerText = questions[currentQuestionIndex].text;
+
+        optionsContainer.innerHTML = '';
+
+        questions[currentQuestionIndex].options.forEach(option => {
+            const button = document.createElement('button');
+            button.innerText = option;
+            button.onclick = () => checkAnswer(option);
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(answer) {
+        const correctAnswer = questions[currentQuestionIndex].correct;
+        if (answer === correctAnswer) {
+            alert('Correct!');
+        } else {
+            alert('Wrong!');
+        }
+    }
+
+    function nextQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            loadQuestion();
+        } else {
+            alert('You have completed the game!');
+            document.getElementById('game-choice').style.display = 'block';
+            document.getElementById('game-area').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

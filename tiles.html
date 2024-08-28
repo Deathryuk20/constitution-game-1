@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEARNING TILES</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: antiquewhite;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Styling the title */
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+            text-transform: uppercase;
+        }
+
+        h2::first-letter {
+            font-size: 1.3em; /* Increase the size of the first letter slightly */
+            font-weight: bold;
+        }
+
+        /* Styling the table */
+        table {
+            width: 95%;
+            border-collapse: separate; /* Change from collapse to separate for border radius */
+            border-spacing: 0; /* Remove space between cells */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        /* Styling the table headers */
+        th {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            font-size: 1.2em;
+            border-radius: 8px 8px 0 0; /* Rounded corners for the top header row */
+        }
+
+        /* Styling the table cells */
+        td {
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            position: relative;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+            height: 250px;
+            border-radius: 8px; /* Rounded corners for cells */
+        }
+
+        /* Hover effect for table rows */
+        tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Zebra stripes effect */
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Styling the images within cells */
+        .cell-image {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid black;
+        }
+
+        /* Show the image on hover */
+        td:hover .cell-image {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>LEARNING TILES</h2>
+
+    <table>
+        <tbody>
+            <tr>
+                <td>INDIAN PREAMBLE
+                    <img src="images/preamble.jpeg" class="cell-image" alt="Image 1">
+                </td>
+                <td>THE UNION AND ITS TERRITORIES
+                    <img src="images/territories.jpeg" class="cell-image" alt="Image 4">
+                </td>
+                <td>CITIZENSHIP
+                    <img src="images/citizenship.jpeg" class="cell-image" alt="Image 5">
+                </td>
+                <td>FUNDAMENTAL RIGHTS
+                    <img src="images/fundamental rights.jpeg" class="cell-image" alt="Image 2">
+                </td>
+                <td>THE UNION EXECUTIVE
+                    <img src="images/union.jpeg" class="cell-image" alt="Image 3">
+                </td>
+            </tr>
+            <tr>
+                <td>FUNDAMENTAL DUTIES
+                    <img src="images/fundamental rights.jpeg" class="cell-image" alt="Image 6">
+                </td>
+                <td>PARLIAMENT OF INDIA
+                    <img src="images/parliament.avif" class="cell-image" alt="Image 7">
+                </td>
+                <td>HIGH COURTS OF INDIA
+                    <img src="images/high courts.jpeg" class="cell-image" alt="Image 8">
+                </td>
+                <td>THE PANCHAYATS
+                    <img src="images/panchayat.jpeg" class="cell-image" alt="Image 9">
+                </td>
+                <td>THE MUNICIPALITIES
+                    <img src="images/municipal.jpeg" class="cell-image" alt="Image 10">
+                </td>
+            </tr>
+            <tr>
+                <td>THE CO-OPERATIVE SOCIETIES
+                    <img src="images/coopretives.jpeg" class="cell-image" alt="Image 11">
+                </td>
+                <td>THE SCHEDULE AND TRIBAL AREAS
+                    <img src="images/tribal.jpeg" class="cell-image" alt="Image 12">
+                </td>
+                <td>FINANCE, PROPERTY, CONTRACTS AND SUITS
+                    <img src="images/finance.jpeg" class="cell-image" alt="Image 13">
+                </td>
+                <td>SERVICES UNDER THE UNION AND THE STATES
+                    <img src="images/seervices.jpeg" class="cell-image" alt="Image 14">
+                </td>
+                <td>FREEDOM OF TRADE AND COMMERCE
+                    <img src="images/trade (2).jpeg" class="cell-image" alt="Image 15">
+                </td>
+            </tr>
+            <tr>
+                <td>DEMOCRACY
+                    <img src="images/voting.jpeg" class="cell-image" alt="Image 16">
+                </td>
+                <td>SPECIAL PROVISIONS RELATING TO CERTAIN CLASSES
+                    <img src="images/reservation.jpeg" class="cell-image" alt="Image 17">
+                </td>
+                <td>OFFICIAL LANGUAGE
+                    <img src="images/languages.jpeg" class="cell-image" alt="Image 18">
+                </td>
+                <td>EMERGENCY PROVISIONS
+                    <img src="images/emergency.jpeg" class="cell-image" alt="Image 19">
+                </td>
+                <td>AMENDMENT OF CONSTITUTION
+                    <img src="images/amendment of constitution.avif" class="cell-image" alt="Image 20">
+                </td>
+            </tr>
+            <tr>
+                <td>TRIBUNAL OF INDIAN CONSTITUTIONS
+                    <img src="images/tribunals.jpeg" class="cell-image" alt="Image 21">
+                </td>
+                <td>LOK SABHA SEATS
+                    <img src="images/lok sabhaa seats.jpeg" class="cell-image" alt="Image 22">
+                </td>
+                <td>GOVERNMENT
+                    <img src="images/governance.jpeg" class="cell-image" alt="Image 23">
+                </td>
+                <td>DIRECTIVE PRINCIPLES OF STATE POLICY
+                    <img src="images/directive principles.jpeg" class="cell-image" alt="Image 24">
+                </td>
+                <td>INDIA THAT IS BHARAT
+                    <img src="images/bharat.jpeg" class="cell-image" alt="Image 25">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

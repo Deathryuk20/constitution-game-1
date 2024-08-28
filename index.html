@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Poppins&display=swap");
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    .max-width {
+      width: min(450ch, 100% - 4rem);
+      margin-inline: auto;
+    }
+
+    .navigation-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      padding: 0 20px; 
+      height: 80px; 
+    }
+    .navigation-items {
+      display: flex;
+      align-items: center; 
+    }
+    .navigation-items li {
+      list-style-type: none;
+      margin-right: 30px;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+    .logo-img {
+      width: 100px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      font-family: "Baskervville SC", serif;
+      font-weight: 400;
+    }
+
+    .hero-title {
+      width: 100%;
+      height: 50vh;
+      background-color: antiquewhite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10rem;
+    }
+    .hero-title h1 {
+      font-size: 50px;
+      font-family: "Baskervville SC", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .hero-tag {
+      font-size: 20px;
+      font-family: "Baskervville SC", serif;
+      font-weight: 400;
+      font-style: normal;
+      margin-bottom: 2rem;
+    }
+
+    .get-started-button {
+      background-color: black;
+      font-family: "Baskervville SC", serif;
+      color: white;
+      text-decoration: none;
+      padding: 20px 40px;
+      border-radius: 5px;
+    }
+    .game-title {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 25px;
+      grid-row-gap: 0px;
+      margin-bottom: 10rem;
+    }
+    .card {
+      height: 20rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: rgb(239, 239, 239);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 10px;
+    }
+    .card a {
+      font-size: 30px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      color: black;
+      text-transform: uppercase;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      border: 2px solid black;
+    }
+
+    .footer {
+      width: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      padding: 4rem;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .reference-links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 150px;
+      grid-row-gap: 0px;
+    }
+    .reference-links a {
+      font-size: 20px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navigation-bar">
+      <div class="logo">
+        <img src="./images/constitution1.png" class="logo-img"></img>
+        <h1>Constitution Game</h1>
+      </div>
+
+      <div>
+        <ul class="navigation-items">
+          
+          <li>learning made fun</li>
+          <li>About</li>
+          <li>Comments</li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Landing Section -->
+
+    <div class="hero-title">
+      <h1>Lets Learn Constiution</h1>
+      <h3 class="hero-tag">A group project by Team TechSparks</h3>
+      <a href="#TILES" class="get-started-button">Get Started</a>
+    </div>
+
+    <!-- Games section -->
+    <div ID="TILES" class="game-title max-width">
+      
+      <div class="card">
+        <a href="tiles.html">Learning Tiles</a>
+      </div>
+      <div class="card">
+        <a href="flash games .html">Flash Games</a>
+      </div>
+      <div class="card">
+        <a href="quiz.html">Quiz Game</a>
+      </div>
+      <div class="card">
+        <a href="refence-vids.html">Constitution</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="reference-links">
+        <a href="https://legislative.gov.in/constitution-of-india/">Constitution for reference</a>
+        <a href="https://www.google.com/search?q=india&sca_esv=5a8ea23e618ef53b&sca_upv=1&sxsrf=ADLYWIKWjxOHUEQ6dpBm0McS_ZxqELZpYw:1724565939073&source=hp&biw=1536&bih=791&ei=s8nKZqGmAuXM1e8Pk-6gkAg&iflsig=AL9hbdgAAAAAZsrXwyzM3z-Jp4XU8myupgGTB8aszL_A&ved=0ahUKEwjhy8DhvI-IAxVlZvUHHRM3CIIQ4dUDCBA&uact=5&oq=india&gs_lp=EgNpbWciBWluZGlhMggQABiABBixAzIIEAAYgAQYsQMyCBAAGIAEGLEDMggQABiABBixAzIIEAAYgAQYsQMyCBAAGIAEGLEDMgsQABiABBixAxiDATIIEAAYgAQYsQMyBRAAGIAEMgsQABiABBixAxiDAUiDTFCdGFiDR3AIeACQAQCYAe0BoAGDFKoBBjAuMi4xMLgBA8gBAPgBAYoCC2d3cy13aXotaW1nmAIUoAKLFagCCsICBxAjGCcY6gLCAgQQIxgnwgIOEAAYgAQYsQMYgwEYigWYAwySBwY4LjEuMTGgB5dL&sclient=img&udm=2">Referred Images</a>
+        <a href="https://youtu.be/PvULrpX0HtA?si=7KsgStVLTmVzFkw8">Youtube Refences</a>
+        <a href="#">Contact us</a>
+      </div>
+    </div>
+  </body>
+</html>
